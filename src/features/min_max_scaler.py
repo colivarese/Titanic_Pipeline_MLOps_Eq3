@@ -7,9 +7,9 @@ class MinMaxScaler(BaseEstimator, TransformerMixin):
     def __init__(self):
         self.scaler = MMScaler()
 
-    def fit(self, X:pd.DataFrame) -> None:
+    def fit(self, X:pd.DataFrame):
         self.scaler.fit(X)
 
-    def transform(self, X:pd.DataFrame) -> None:
+    def transform(self, X:pd.DataFrame):
         X_scaled = self.scaler.transform(X)
         return X_scaled
