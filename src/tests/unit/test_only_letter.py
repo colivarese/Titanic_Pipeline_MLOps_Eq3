@@ -4,6 +4,8 @@ import numpy as np
 import re
 import pytest
 
+from ...features.cabin_only_letter import CabinOnlyLetter
+
 def ExtractOnlyLetter(x):
     if type(x)==str:    
         return ''.join(re.findall("[a-zA-Z]+", x))  
