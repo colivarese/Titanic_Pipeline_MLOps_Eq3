@@ -1,4 +1,5 @@
 
+import joblib
 
 from src.features.missing_indicator import MissingIndicator
 from src.features.cabin_only_letter import CabinOnlyLetter
@@ -29,9 +30,9 @@ titanic_pipeline = Pipeline(
         ('missing_indicator', MissingIndicator(NUMERICAL_VARS)),
         ('cabin_only_letter', CabinOnlyLetter('cabin')),
         ('categorical_imputer', CategoricalImputerEncoder(CATEGORICAL_VARS)),
-        ('median_imputation', NumericalImputesEncoder(NUMERICAL_VARS)),
         ('rare_labels', RareLabelCategoricalEncoder(tol=0.02,  variables=CATEGORICAL_VARS)),
         ('dummy_vars', OneHotEncoder(CATEGORICAL_VARS)),
+        ('median_imputation', NumericalImputesEncoder(NUMERICAL_VARS)),
         ('scaling', MinMaxScaler()),
         ('log_reg', LogisticRegression(C=0.0005, class_weight='balanced', random_state=SEED_MODEL))
         
@@ -44,10 +45,12 @@ data = 'src/models/cleaned_data'
 # Loading data from specific url
 df = pd.read_csv(data)
 
+
+
 X_train, X_test, y_train, y_test = train_test_split( df.drop(TARGET, axis=1), df[TARGET], test_size=0.2, random_state=SEED_MODEL)
 
-
 titanic_pipeline.fit(X_train, y_train)
+
 
 #titanic_pipeline.fit(X_train, y_train)
 
