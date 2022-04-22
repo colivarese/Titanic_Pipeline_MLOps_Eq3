@@ -45,8 +45,6 @@ data = 'src/models/cleaned_data'
 # Loading data from specific url
 df = pd.read_csv(data)
 
-print(sklearn.__version__)
-
 X_train, X_test, y_train, y_test = train_test_split( df.drop(TARGET, axis=1), df[TARGET], test_size=0.2, random_state=SEED_MODEL)
 
 titanic_pipeline.fit(X_train, y_train)
