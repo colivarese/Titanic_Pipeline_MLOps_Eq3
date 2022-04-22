@@ -4,7 +4,7 @@ import pandas as pd
 
 
 class RareLabelCategoricalEncoder(BaseEstimator, TransformerMixin):
-    def __init__(self, tol=0.02, variables: List[str] = None):
+    def __init__(self, tol, variables: List[str]):
         self.tol = tol
         self.variables = variables
         self.valid_labels_dict = {}

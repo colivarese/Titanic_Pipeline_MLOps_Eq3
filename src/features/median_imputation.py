@@ -4,7 +4,7 @@ import pandas as pd
 
 
 class NumericalImputesEncoder(BaseEstimator, TransformerMixin):
-    def __init__(self, variables: List[str] = None):
+    def __init__(self, variables: List[str]):
         self.variables = variables
         self.valid_labels_dict = {}
 
