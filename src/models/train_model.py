@@ -95,4 +95,8 @@ preds = titanic_pipeline.predict(X_test)
 print(f'Accuracy of the model is {(preds == y_test).sum() / len(y_test)}')
 
 
+filename = 'titanic_pipeline_model.sav'
+joblib.dump(titanic_pipeline, filename)
+
+
 # El archivo se corre con python -m src.models.train.model
