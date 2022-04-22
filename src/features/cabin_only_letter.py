@@ -6,14 +6,14 @@ from typing import List
 
 class CabinOnlyLetter(BaseEstimator, TransformerMixin):
 
-def __init__(self, column: str):
-    self.column = column
+    def __init__(self, column: str):
+        self.column = column
 
-def fit(self, x: pd.DataFrame):
-    pass
+    def fit(self, x: pd.DataFrame):
+        pass
 
-def transform(self, X: pd.DataFrame):
+    def transform(self, X: pd.DataFrame):
 
-    X[self.column] = [''.join(re.findall("[a-zA-Z]+", row)) if type(row) == str else row for row in X[self.column]]
+        X[self.column] = [''.join(re.findall("[a-zA-Z]+", row)) if type(row) == str else row for row in X[self.column]]
 
-    return X
+        return X
