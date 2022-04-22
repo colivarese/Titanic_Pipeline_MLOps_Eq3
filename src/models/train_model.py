@@ -1,6 +1,5 @@
 
 
-import sklearn
 from src.features.missing_indicator import MissingIndicator
 from src.features.cabin_only_letter import CabinOnlyLetter
 from src.features.categorical_imputer_encoder import CategoricalImputerEncoder
@@ -46,6 +45,7 @@ data = 'src/models/cleaned_data'
 df = pd.read_csv(data)
 
 X_train, X_test, y_train, y_test = train_test_split( df.drop(TARGET, axis=1), df[TARGET], test_size=0.2, random_state=SEED_MODEL)
+
 
 titanic_pipeline.fit(X_train, y_train)
 
