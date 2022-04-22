@@ -19,15 +19,5 @@ class CabinOnlyLetter(BaseEstimator, TransformerMixin):
         return X
 
   
-  def __init__(self, column: str):
-    self.column = column
 
-  def fit(self, x: pd.DataFrame):
-    pass
-
-  def transform(self, X: pd.DataFrame):
-
-    X[self.column] = [''.join(re.findall("[a-zA-Z]+", row)) if type(row) == str else row for row in X[self.column]]
-
-    return X
 
