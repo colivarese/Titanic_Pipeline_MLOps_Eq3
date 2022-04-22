@@ -11,6 +11,12 @@ from src.features.one_hot_encoder import OneHotEncoder
 
 
 def obtener_datos_one_hot_encoder():
+    """En esta función se obtienen los datos para el test de OneHotEncoder
+
+    Returns:
+        List[Tuples(longitud, DataFrame, List[columnas])]: Regresa una
+        lista de tuplas con los datos para el test de OneHotEncoder
+    """
     titles = ["Mrs", "Mr", "Miss", "Master", "Other"]
     # la longitud es menos 1 columna, porque el OneHotEncodig no toma la columna de target
     titles_len = len(titles) - 1
@@ -30,6 +36,14 @@ def obtener_datos_one_hot_encoder():
 
 @pytest.mark.parametrize("result, df, variables", obtener_datos_one_hot_encoder())
 def test_one_hot_encoding(result, df, variables):
+    """one_hot_encoding: Test para verificar que el OneHotEncoder
+    funciona correctamente
+
+    Args:
+        result (Int): cantidad de columnas que debe tener el DataFrame
+        df (DataFrame): DataFrame con los datos para el test
+        variables (List[Str]): lista de variables con la(s) columna(s) de target
+    """
     # traer el OneHotEncoding de Cesar y hacer las pruebas, debe pasar de 1 columna a 5
     one_hot = OneHotEncoder(variables)
     one_hot.fit(df)
