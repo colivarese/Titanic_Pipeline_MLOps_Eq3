@@ -1,5 +1,6 @@
 
 import joblib
+import sklearn
 from src.features.missing_indicator import MissingIndicator
 from src.features.cabin_only_letter import CabinOnlyLetter
 from src.features.categorical_imputer_encoder import CategoricalImputerEncoder
@@ -89,14 +90,9 @@ X_train, X_test, y_train, y_test = train_test_split( df.drop(TARGET, axis=1), df
 
 titanic_pipeline.fit(X_train, y_train)
 
-print(titanic_pipeline.predict(X_test))
+preds = titanic_pipeline.predict(X_test)
+
+print(f'Accuracy of the model is {(preds == y_test).sum() / len(y_test)}')
 
 
-#titanic_pipeline.fit(X_train, y_train)
-
-#titanic_pipeline.score(X_test, y_test)
-
-#class_pred = titanic_pipeline.predict(X_test)
-#proba_pred = titanic_pipeline.predict_proba(X_test)[:,1]
-#print('test roc-auc : {}'.format(roc_auc_score(y_test, proba_pred)))
-#print('test accuracy: {}'.format(accuracy_score(y_test, class_pred)))
+# El archivo se corre con python -m src.models.train.model
