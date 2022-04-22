@@ -14,9 +14,9 @@ class CategoricalImputerEncoder(BaseEstimator, TransformerMixin):
     def __init__(self, variables: List[str]):
         self.variables = variables
 
-    def fit(self, X: pd.DataFrame):
+    def fit(self, X: pd.DataFrame,y=0):
         return self
 
-    def transform(self, X: pd.DataFrame):
+    def transform(self, X: pd.DataFrame,y=0):
         X[self.variables] = X[self.variables].fillna("missing")
         return X
