@@ -4,22 +4,14 @@ import pandas as pd
 from sklearn.base import BaseEstimator, TransformerMixin
 from typing import List
 
-URL = "https://www.openml.org/data/get_csv/16826755/phpMYEkMl"
-# Loading data from specific url
-df = pd.read_csv(URL)
-
-# Uncovering missing data
-df.replace("?", np.nan, inplace=True)
-df["age"] = df["age"].astype("float")
-df["fare"] = df["fare"].astype("float")
-
 
 class GetFirstCabinEncoder(BaseEstimator, TransformerMixin):
-    """_summary_
+    """Función que obtiene el primer valor de la cabina en
+    el caso de que exista.
 
     Args:
-        BaseEstimator (_type_): _description_
-        TransformerMixin (_type_): _description_
+        BaseEstimator (BaseEstimator): Clase heredada
+        TransformerMixin (TransformerMixin): Clase heredada
     """
 
     def __init__(self):
@@ -39,11 +31,10 @@ class GetFirstCabinEncoder(BaseEstimator, TransformerMixin):
 
 
 class GetTitleEncoder(BaseEstimator, TransformerMixin):
-    """_summary_
-
+    """Función que obtiene el título de la persona.
     Args:
-        BaseEstimator (_type_): _description_
-        TransformerMixin (_type_): _description_
+        BaseEstimator (BaseEstimator): Clase heredada
+        TransformerMixin (TransformerMixin): Clase heredada
     """
 
     def __init__(self):
@@ -66,11 +57,3 @@ class GetTitleEncoder(BaseEstimator, TransformerMixin):
             else:
                 df.at[row.Index, "title"] = "Other"
         return df
-
-
-# esto se pondria en el pipeline
-# get_first_cabin_encoder = GetFirstCabinEncoder()
-# df = get_first_cabin_encoder.transform(df)
-# title_encoder = GetTitleEncoder()
-# Extract the title from 'name'
-# df = title_encoder.transform(df)
