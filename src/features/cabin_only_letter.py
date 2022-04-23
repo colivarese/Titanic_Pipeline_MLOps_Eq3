@@ -17,3 +17,7 @@ class CabinOnlyLetter(BaseEstimator, TransformerMixin):
         X[self.column] = [''.join(re.findall("[a-zA-Z]+", row)) if type(row) == str else row for row in X[self.column]]
 
         return X
+
+  
+
+
